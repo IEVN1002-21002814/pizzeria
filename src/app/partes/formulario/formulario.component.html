@@ -1,0 +1,113 @@
+<div class="row">
+    <div class="col-12 h-50">
+        <div class="w-100">
+                <form [formGroup]="formGroup" (ngSubmit) = "onSubmit()" class="w-100 row"> 
+                    <div class="col-4">
+                        <div class="h-100 w-100 ">
+                            <div class="mb-3">
+                                <label for="basic-url" class="form-label">Ingresa el nombre del cliente:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon3">Nombre:</span>
+                                    <input type="text" class="form-control" id="basic-url"
+                                        aria-describedby="basic-addon3 basic-addon4"
+                                        formControlName="nombre">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="basic-url" class="form-label">Tamaño Pizza:</label>
+                                <br>
+                                <div class="w-100 gap-5 ">
+                                    <div class="form-check">
+                                        <input type="radio" class="btn-check" name="tamanio" id="chica"
+                                            autocomplete="off" value="chica"
+                                            formControlName="tamanio">
+                                        <label class="btn btn-outline-primary mb-1" for="chica">Chica $40</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="btn-check" name="tamanio" id="mediana"
+                                            autocomplete="off" value="mediana" formControlName="tamanio">
+                                        <label class="btn btn-outline-primary mb-1" for="mediana">Mediana $80</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="btn-check" name="tamanio" id="grande"
+                                            autocomplete="off" value="grande" formControlName="tamanio">
+                                        <label class="btn btn-outline-primary mb-1" for="grande">Grande $120</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="h-100 w-100 ">
+                            <div class="mb-3">
+                                <label for="basic-url" class="form-label">Ingresa la dirección del cliente:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon3">Dirección:</span>
+                                    <input type="text" class="form-control" id="basic-url"
+                                        aria-describedby="basic-addon3 basic-addon4"
+                                        formControlName="direccion">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="basic-url" class="form-label">Ingredientes Pizza:</label>
+                                <br>
+                                <div class="w-100 gap-5 ">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="btn-check" id="jamon" autocomplete="off"
+                                            value="jamon" (change)="onCheckboxChange($event)">
+                                        <label class="btn btn-outline-primary" for="jamon">Jamon $10</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="btn-check" id="piña" autocomplete="off"
+                                         value="piña" (change)="onCheckboxChange($event)">
+                                        <label class="btn btn-outline-primary" for="piña">Piña $10</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="btn-check" id="champ" autocomplete="off"
+                                            value="champ" (change)="onCheckboxChange($event)">
+                                        <label class="btn btn-outline-primary" for="champ">Champiñones $10</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="h-100 w-100 ">
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text" >Telefono:</span>
+                                    <input type="number" class="form-control"
+                                        formControlName="telefono">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">No. Pizzas:</span>
+                                    <input type="number" class="form-control"
+                                        formControlName="nopizzas">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">Fecha:</span>
+                                    <input type="date" class="form-control"
+                                        formControlName="fecha">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <button [disabled]="formGroup.invalid" type="submit" class="btn btn-primary mb-3">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+    <hr>
+    <div class="col-6" style="height: 50%;">
+        <app-lista-orden [arrayPedidoo]="localStorageService.localStorageGett()"></app-lista-orden>
+    </div>
+    <div class="col-6" style="height: 50%;">
+        <app-filtrado ></app-filtrado>
+
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="w-100 " style=" height: 50%;">
+    <div class="w-100" style="height: 20%;">
+        <form [formGroup]="filtrosDates" (ngSubmit)="onSubmit()" class="w-100 h-100">
+            <div class="row h-100">
+                <div class="col-6">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon3">Día:</span>
+                        <input type="text" class="form-control"
+                            formControlName="dayValue">
+                        <button class="btn btn-outline-secondary" type="button" (click)="diaSearch()">Buscar</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group">
+                        <label class="input-group-text" for="inputGroupSelect01">Mes</label>
+                        <select class="form-select" formControlName="mesValue">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="button">Button</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="w-100" style="height: 80%;">
+        <div>
+            <table class="table table-striped h-100">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Total de Pedidos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let resumen of resumenPedidos">
+                  <td>{{ resumen.nombre }}</td>
+                  <td>{{ resumen.total | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+</div>

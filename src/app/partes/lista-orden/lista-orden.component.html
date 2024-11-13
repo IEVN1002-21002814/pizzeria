@@ -1,0 +1,70 @@
+<div class="w-100 pb-2" style=" height: 50%;">
+    <form [formGroup]="tablaPedidos" (ngSubmit) = "onSubmit()" class="w-100 h-100">
+        <table class="table table-striped h-100">
+            <thead>
+              <tr>
+               
+                <th scope="col">#</th>
+                <th scope="col">Tamaño</th>
+                <th scope="col">Ingredientes</th>
+                <th scope="col">No. Pizzas</th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+                <!-- @for (pedido of arrayPedidoo; track $index) {
+                    <tr>    
+                        <th scope="row">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="{{$index}}">{{$index}}</span>
+                                <div class="input-group-text gap-1">
+                                <input class="form-check-input mt-0" type="radio" value="{{$index}}">
+                                </div>
+                            </div>
+                        </th>
+                        <td>{{pedido.tamanio}}</td>
+                        <td>{{pedido.tamanio}}
+
+                        </td>
+                        <td>{{pedido.nopizzas}}</td>
+                        <td>{{pedido.nopizzas }}</td>
+                    </tr>
+                } -->
+
+                <ng-container *ngFor="let grupo of arrayPedidoo">
+                    <tr>
+                      <th colspan="5">{{ grupo.nombre }}</th>
+                    </tr>
+                    <ng-container *ngFor="let pedido of grupo.pedidos; let i = index;">
+                      <tr>
+                        <th scope="row">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">{{ i +1 }}</span>
+                            <div class="input-group-text gap-1">
+                              <input class="form-check-input mt-0" type="radio" 
+                              id="{{grupo.nombre}}-{{i}}" autocomplete="off"
+                              value="{{grupo.nombre}}-{{i}}" formControlName="eliminado" name=""eliminado>
+
+                              <!-- <input class="form-check-input mt-0" type="checkbox" 
+                                [id]="grupo.nombre + '-' + i"
+                                [value]="grupo.nombre + '-' + i" (change)="cambioPedido($event)"> -->
+                            </div> 
+                          </div>
+                        </th>
+                        <!-- <td>{{ grupo.nombre }}</td> -->
+                        <td>{{ pedido.tamanio }}</td>
+                        <td>{{ pedido.ingredientes.join(', ') }}</td>
+                        <td>{{ pedido.nopizzas }}</td>
+                        <td>{{ pedido.subtotal | currency}}</td>
+                      </tr>
+                    </ng-container>
+                  </ng-container>
+            </tbody>
+        </table>
+        <div class="w-100 d-flex justify-content-around">
+            <button type="button" class="btn btn-danger " (click)="eliminarP()">Quitar</button>
+            <button type="button" class="btn btn-success ">Terminar</button>
+        </div>
+        
+    </form>
+</div>
